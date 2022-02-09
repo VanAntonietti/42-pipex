@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:10:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/09 16:43:45 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/09 17:31:20 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	get_next_command(t_pipex *pipex, t_execv *cmdnow)
 	i = 0;
 	while(pipex->path[i])
 	{
-		printf("%s\n", pipex->path[0]);
 		tmp = ft_strjoin(pipex->path[i], "/");
 		cmdnow->path_cmd = ft_strjoin(tmp, cmdnow->argv[0]);
 		free(tmp);
@@ -67,7 +66,7 @@ void child_one(t_pipex *pipex)
 	close(pipex->fd[0]);
 	dup2(pipex->file_in, 0);
 	pipex->first_cmd->argv = ft_split(pipex->s_argv[2], ' ');
-		if(get_next_command(pipex, pipex->second_cmd) == 0)
+	if(get_next_command(pipex, pipex->second_cmd) == 0)
 		execve(pipex->first_cmd->path_cmd, pipex->first_cmd->argv, pipex->s_envp);
 	else
 		return;
@@ -102,8 +101,8 @@ void	pipex_init(t_pipex *pipex)
 		child_two(pipex);
 	close(pipex->fd[0]);
 	close(pipex->fd[1]);
-	waitpid(pipex->pid_child1, NULL, 0);
-	waitpid(pipex->pid_child2, NULL, 0);
+	// waitpid(pipex->pid_child1, NULL, 0);
+	// waitpid(pipex->pid_child2, NULL, 0);
 }
 
 int	get_next_var(t_pipex *pipex)
@@ -124,30 +123,36 @@ int	get_next_var(t_pipex *pipex)
 	pipex->path = ft_split(path_local, ':');
 	printf("%s \n", path_local);
 	printf("%s \n", pipex->path[0]);
+	printf("%s \n", pipex->path[1]);
+	printf("%s \n", pipex->path[2]);
+	printf("%s \n", pipex->path[3]);
+	printf("%s \n", pipex->path[4]);
+	
 	return(0);
 }
 
-void	pipex_terminate(t_pipex *pipex)
-{
+// void	pipex_terminate(t_pipex *pipex)
+// {
 	
-}
+// }
 
 int main(int argc, char **argv, char **envp)
 {
-	t_pipex pipex;
+	t_pipex *pipex;
+	pipex = malloc(1 * sizeof(t_pipex));
 
-	pipex.s_argc = argc;
-	pipex.s_argv = argv;
-	pipex.s_envp = envp;
+	pipex->s_argc = argc;
+	pipex->s_argv = argv;
+	pipex->s_envp = envp;
 
 	if (argc != 5)
 		return(1);
-	pipex.file_in = open(argv[1], O_RDONLY);
-	pipex.file_out = open(argv[4], O_CREAT | O_TRUNC | O_WRONLY);
-	if(get_next_var(&pipex) < 0)
+	pipex->file_in = open(argv[1], O_RDONLY);
+	pipex->file_out = open(argv[4], O_CREAT | O_TRUNC | O_WRONLY);
+	if(get_next_var(pipex) < 0)
 		return(1);
-	pipex_init(&pipex);
-	pipex_terminate(&pipex);
+	pipex_init(pipex);
+	// pipex_terminate(&pipex);
 	
 	return(0);
 }

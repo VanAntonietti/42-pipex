@@ -6,79 +6,68 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 19:57:14 by vantonie          #+#    #+#             */
-/*   Updated: 2021/09/17 01:32:06 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/09 17:26:15 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count(char const *s, char c)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (s[i] != 0)
-	{
-		while (s[i] == c && s[i] != 0)
-		{
-			i++;
-		}
-		while (s[i] != c && s[i] != 0)
-		{
-			i++;
-		}
-		if (s[i - 1] != c)
-		{
-			count++;
-		}
-	}
-	return (count);
-}
-
-static	void	ft_fill(const char *s, char c, int len, char **res)
-{
-	int		count;
-	int		len_word;
-	char	*ss;
-
-	count = 0;
-	ss = (char *) s;
-	while (count < len)
-	{
-		len_word = 0;
-		while (*ss == c && *ss != 0)
-		{
-			ss++;
-		}
-		while (ss[len_word] != c && ss[len_word] != 0)
-		{
-			len_word++;
-		}
-		res[count] = ft_substr(ss, 0, len_word);
-		count++;
-		ss += len_word;
-	}
-	res[count] = 0;
-}
+static void		ft_fill_matrix(char const *s, char c, size_t num, char **res);
+static size_t	count_s(char const *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	int		len;
+	size_t	num;
 
 	res = NULL;
-	if (s == NULL)
-	{
+	if (!s)
 		return (NULL);
-	}
-	len = ft_count(s, c);
-	res = (char **)malloc((len + 1) * sizeof(char *));
+	num = count_s(s, c);
+	res = (char **)malloc(sizeof(char *) * (num + 1));
 	if (!res)
-	{
 		return (NULL);
-	}
-	ft_fill(s, c, len, res);
+	res[num] = NULL;
+	ft_fill_matrix(s, c, num, res);
 	return (res);
+}
+
+static size_t	count_s(char const *s, char c)
+{
+	size_t		count;
+	char		*tmp;
+
+	tmp = (char *)s;
+	count = 0;
+	while (*tmp != 0)
+	{
+		while (*tmp == c && *tmp != 0)
+			++tmp;
+		while (*tmp != c && *tmp != 0)
+			++tmp;
+		if (*(tmp - 1) != c)
+			count++;
+	}
+	return (count);
+}
+
+static void	ft_fill_matrix(char const *s, char c, size_t num, char **res)
+{
+	size_t	count;
+	char	*start_str;
+	int		len_word;
+
+	count = 0;
+	start_str = (char *)s;
+	while (count < num)
+	{
+		len_word = 0;
+		while (*start_str == c && *start_str != 0)
+			++start_str;
+		while (start_str[len_word] != c && start_str[len_word] != 0)
+			len_word++;
+		res[count] = ft_substr(start_str, 0, len_word);
+		start_str += len_word;
+		count++;
+	}
 }
