@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:19:10 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/09 15:05:08 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:44:03 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <string.h>
+
+#include <stdio.h>
 
 typedef struct s_execv
 {
@@ -37,11 +39,14 @@ typedef struct s_pipex
 	char	**s_envp;
 	t_execv *first_cmd;
 	t_execv	*second_cmd;
-	pid_t	pid_child1;
-	pid_t	pid_child2;
 }				t_pipex;
 
-int	get_next_var(t_pipex *pipex);
-void	pipex(t_pipex *pipex);
-
+int		get_next_var(t_pipex *pipex);
+void	pipex_init(t_pipex *pipex);
+// void	pipex_terminate(t_pipex *pipex);
+int		get_next_command(t_pipex *pipex, t_execv *cmdnow);
+int		get_next_var(t_pipex *pipex);
+void	child_one(t_pipex *pipex);
+void	child_two(t_pipex *pipex);
+void	init_struct(t_pipex *pipex, int argc, char **argv, char** envp);
 #endif
