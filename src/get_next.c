@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:22:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/10 15:46:31 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:29:14 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	get_next_command(t_pipex *pipex, t_execv *cmdnow)
 {
 	char	*tmp;
 	int		i;
-	
+		
 	i = 0;
 	while(pipex->path[i])
 	{
@@ -25,7 +25,9 @@ int	get_next_command(t_pipex *pipex, t_execv *cmdnow)
 		free(tmp);
 		if(access(cmdnow->path_cmd, X_OK) == 0)
 			return(0);
-	i++;
+		else
+			free(cmdnow->path_cmd);
+		i++;
 	}
 	return(1);
 }
@@ -46,12 +48,6 @@ int	get_next_var(t_pipex *pipex)
 	}
 	path_local = ft_strchr(path_local, '/');
 	pipex->path = ft_split(path_local, ':');
-	printf("%s \n", path_local);
-	printf("%s \n", pipex->path[0]);
-	printf("%s \n", pipex->path[1]);
-	printf("%s \n", pipex->path[2]);
-	printf("%s \n", pipex->path[3]);
-	printf("%s \n", pipex->path[4]);
 	
 	return(0);
 }

@@ -10,10 +10,10 @@
 			"request": "launch",
 			"program": "${workspaceRoot}/pipex",
 			"args": [
-				"files/teste",
+				"test1",
 				"cat",
-				"tr ' ' '+'",
-				"files/res"
+				"ls -l",
+				"test2"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}",

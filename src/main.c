@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:10:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/10 15:42:27 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:33:15 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **envp)
 		return(1);
 	init_struct(&pipex, argc, argv, envp);
 	pipex_init(&pipex);
-	// pipex_terminate(&pipex);
+	pipex_terminate(&pipex);
 	
 	return(0);
 }

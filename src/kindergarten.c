@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:22:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/10 15:27:37 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:28:25 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	child_one(t_pipex *pipex)
 	close(pipex->fd[0]);
 	dup2(pipex->file_in, 0);
 	pipex->first_cmd->argv = ft_split(pipex->s_argv[2], ' ');
-	if(get_next_command(pipex, pipex->second_cmd) == 0)
+	if(get_next_command(pipex, pipex->first_cmd) == 0)
 		execve(pipex->first_cmd->path_cmd, pipex->first_cmd->argv, pipex->s_envp);
 	else
-		return;
+		exit(1);
 }
 
 void	child_two(t_pipex *pipex)
@@ -35,5 +35,5 @@ void	child_two(t_pipex *pipex)
 	if(get_next_command(pipex, pipex->second_cmd) == 0)
 		execve(pipex->second_cmd->path_cmd, pipex->second_cmd->argv, pipex->s_envp);
 	else
-		return;
+		exit(1);
 }
