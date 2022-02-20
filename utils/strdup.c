@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 18:47:58 by vantonie          #+#    #+#             */
-/*   Updated: 2021/09/17 01:32:06 by vantonie         ###   ########.fr       */
+/*   Created: 2021/09/07 17:52:35 by vantonie          #+#    #+#             */
+/*   Updated: 2022/02/19 20:44:17 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/pipex.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+char	*ft_strdup(const char *str)
 {
-	size_t			i;
-	unsigned char	*dst;
+	size_t	i;
+	size_t	len;
+	char	*s;
 
-	dst = (unsigned char *)str;
-	i = 0;
-	while (0 < n)
-	{
-		dst[i] = (unsigned char)c;
-		i++;
-		n--;
-	}
-	return (dst);
+	len = ft_strlen(str) + 1;
+	s = (char *)malloc(sizeof(char) * len);
+	if (s == NULL)
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		s[i] = str[i];
+	return (s);
 }

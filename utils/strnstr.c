@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_i.c                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 19:51:55 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/04 14:48:39 by vantonie         ###   ########.fr       */
+/*   Created: 2021/09/07 18:48:31 by vantonie          #+#    #+#             */
+/*   Updated: 2022/02/19 20:44:31 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../headers/pipex.h"
 
-void	ft_printf_i(unsigned int dec, t_len *len)
+char	*ft_strnstr(const char *str, const char *ptr, size_t n)
 {
-	char	*str;
+	size_t	ptrlen;
 
-	str = ft_itoa(dec);
-	ft_putstr_fd(str, 1);
-	len->len += ft_strlen(str);
-	free(str);
+	ptrlen = ft_strlen(ptr);
+	if (ptrlen == 0)
+	{
+		return ((char *)str);
+	}
+	while (*str && ptrlen <= n)
+	{
+		if (ft_strncmp(str, ptr, ptrlen) == 0)
+			return ((char *)str);
+		str++;
+		n--;
+	}
+	return (NULL);
 }

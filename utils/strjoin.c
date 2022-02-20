@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/11 15:06:29 by vantonie          #+#    #+#             */
-/*   Updated: 2021/09/17 01:32:06 by vantonie         ###   ########.fr       */
+/*   Created: 2021/09/07 20:44:58 by vantonie          #+#    #+#             */
+/*   Updated: 2022/02/19 21:02:26 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/pipex.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_list	*tmp;
+	char	*str;
+	int		i;
+	int		j;
+	size_t	size;
 
-	tmp = lst;
-	while (tmp != NULL)
-	{
-		f(tmp->content);
-		tmp = tmp->next;
-	}
+	if (!s1 || !s2)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = (char *)malloc(sizeof(char) * size);
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		str[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		str[i + j] = s2[j];
+	str[i + j] = '\0';
+	return (str);
 }

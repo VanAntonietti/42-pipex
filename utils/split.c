@@ -6,11 +6,11 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 19:57:14 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/09 17:26:15 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/19 20:44:00 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/pipex.h"
 
 static void		ft_fill_matrix(char const *s, char c, size_t num, char **res);
 static size_t	count_s(char const *s, char c);

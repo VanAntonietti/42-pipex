@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_s.c                                      :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 19:34:10 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/04 14:48:30 by vantonie         ###   ########.fr       */
+/*   Created: 2021/09/07 18:48:04 by vantonie          #+#    #+#             */
+/*   Updated: 2022/02/19 20:44:11 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../headers/pipex.h"
 
-void	ft_printf_s(char *str, t_len *len)
+char	*ft_strchr(const char *str, int n)
 {
-	if (str == NULL)
+	int	i;
+
+	i = 0;
+	while (str[i] != (char)n)
 	{
-		str = ft_strdup("(null)");
-		ft_putstr_fd(str, 1);
-		len->len += ft_strlen(str);
-		free(str);
+		if (str[i] == 0)
+		{
+			return (NULL);
+		}
+		i++;
 	}
-	else
-	{
-		ft_putstr_fd(str, 1);
-		len->len += ft_strlen(str);
-	}
+	return ((char *)(&str[i]));
 }

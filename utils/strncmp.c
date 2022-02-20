@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/07 18:46:53 by vantonie          #+#    #+#             */
-/*   Updated: 2021/09/17 01:32:06 by vantonie         ###   ########.fr       */
+/*   Created: 2021/09/07 18:48:27 by vantonie          #+#    #+#             */
+/*   Updated: 2022/02/19 20:44:26 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/pipex.h"
 
-int	ft_isascii(int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if ((c >= 0 && c <= 127))
+	size_t			i;
+	unsigned char	su;
+	unsigned char	st;
+
+	i = 0;
+	while (n > 0 && s1[i] != '\0' && s1[i] == s2[i])
 	{
-		return (1);
+		i++;
+		n--;
 	}
-	return (0);
+	if (n == 0)
+	{
+		return (0);
+	}
+	else
+	{
+		su = s1[i];
+		st = s2[i];
+		return (su - st);
+	}
 }
