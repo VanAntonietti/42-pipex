@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:22:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/20 00:16:34 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/20 00:49:17 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ void	init_struct(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->file_out = open(argv[4], O_CREAT | O_TRUNC | O_WRONLY);
 	pipex->first_cmd = NULL;
 	pipex->second_cmd = NULL;
-	if (pipex->file_in != -1 || pipex->file_out == -1)
+	if (pipex->file_in == -1 || pipex->file_out == -1)
 	{
-		write(1, "Error:\n\tThe files is not open!", 31);
+		write(1, "Error:\n\tThe files is not open!\n", 31);
 		exit (1);
 	}
 	if (get_next_var(pipex) < 0)
