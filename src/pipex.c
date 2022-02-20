@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:18:59 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/20 13:52:36 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/20 14:07:35 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	before_fork(t_pipex *pipex)
 }
 
 int	pipex_init(t_pipex *pipex)
-{
+{	
 	pid_t	pid_child1;
 	pid_t	pid_child2;
 
@@ -69,10 +69,10 @@ static void	final_terminate(t_pipex *pipex)
 	free_ptr((void **)&pipex->path);
 	close(pipex->file_in);
 	close(pipex->file_out);
-}
+}	
 
 void	pipex_terminate(t_pipex *pipex)
-{
+{	
 	int	i;
 
 	i = 0;
