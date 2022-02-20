@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:19:10 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/19 21:25:47 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/20 02:40:07 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ char	*ft_strnstr(const char *str, const char *ptr, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *str);
+char	**ft_split_cmds(char const *s);
+void	free_ptr(void **fread);
 
 #endif
