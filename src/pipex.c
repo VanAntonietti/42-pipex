@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:18:59 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/19 23:49:48 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/20 00:00:20 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	pipex_init(t_pipex *pipex)
 	close(pipex->fd[1]);
 	waitpid(pid_child1, NULL, 0);
 	waitpid(pid_child2, NULL, 0);
-	if(pipex->err_num != 0)
+	if (pipex->err_num != 0)
 		command_not_found(pipex);
 }
 

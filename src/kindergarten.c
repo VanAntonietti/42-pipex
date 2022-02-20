@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:22:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/19 23:52:55 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:59:48 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	command_not_found(t_pipex *pipex)
 {
-	char *tmp;
-	
-	if(pipex->err_num == 1)
+	char	*tmp;
+
+	if (pipex->err_num == 1)
 		tmp = pipex->first_cmd->argv[0];
 	else
 		tmp = pipex->second_cmd->argv[0];
