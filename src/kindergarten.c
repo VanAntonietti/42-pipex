@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:22:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/20 14:07:29 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/20 14:10:33 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,4 @@ void	child_two(t_pipex *pipex)
 		command_not_found(pipex);
 		exit(1);
 	}
-}	
+}
