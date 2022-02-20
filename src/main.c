@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:10:38 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/19 20:53:26 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/20 00:18:31 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 5)
 		return (1);
 	init_struct (&pipex, argc, argv, envp);
-	pipex_init (&pipex);
+	if(pipex_init (&pipex) == 1)
+	{	
+		write(1, "Error:\n\tPipe or fork error.\n", 28);
+		pipex_terminate(&pipex);
+		return (1);
+	}
 	pipex_terminate (&pipex);
 	return (0);
 }

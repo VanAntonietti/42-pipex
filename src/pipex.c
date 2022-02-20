@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:18:59 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/20 00:00:20 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/20 00:14:13 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@ void	before_fork(t_pipex *pipex)
 	pipex->second_cmd->path_cmd = NULL;
 }
 
-void	pipex_init(t_pipex *pipex)
+int	pipex_init(t_pipex *pipex)
 {	
 	pid_t	pid_child1;
 	pid_t	pid_child2;
 
 	pid_child1 = 0;
 	pid_child2 = 0;
-	before_fork(pipex);
 	if (pipe(pipex->fd) < 0)
-		exit(1);
+		return (1);
+	before_fork(pipex);
 	pid_child1 = fork();
 	if (pid_child1 < 0)
-		exit(1);
+		return (1);
 	if (pid_child1 == 0)
 		child_one(pipex);
 	pid_child2 = fork();
 	if (pid_child2 < 0)
-		exit(1);
+		return (1);
 	if (pid_child2 == 0)
 		child_two(pipex);
 	close(pipex->fd[0]);
@@ -48,6 +48,7 @@ void	pipex_init(t_pipex *pipex)
 	waitpid(pid_child2, NULL, 0);
 	if (pipex->err_num != 0)
 		command_not_found(pipex);
+	return (0);
 }
 
 void	free_ptr(void **fread)

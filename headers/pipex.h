@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:19:10 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/19 23:50:29 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/20 00:15:54 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_pipex
 }				t_pipex;
 
 int		get_next_var(t_pipex *pipex);
-void	pipex_init(t_pipex *pipex);
+int		pipex_init(t_pipex *pipex);
 void	pipex_terminate(t_pipex *pipex);
 int		get_next_command(t_pipex *pipex, t_execv *cmdnow);
 int		get_next_var(t_pipex *pipex);
