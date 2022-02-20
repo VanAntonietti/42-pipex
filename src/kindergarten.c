@@ -6,18 +6,24 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:22:24 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/20 03:20:29 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:52:55 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/pipex.h"
 
-static void	command_not_found(char *cmd)
+void	command_not_found(t_pipex *pipex)
 {
-	while (*cmd != 0)
+	char *tmp;
+	
+	if(pipex->err_num == 1)
+		tmp = pipex->first_cmd->argv[0];
+	else
+		tmp = pipex->second_cmd->argv[0];
+	while (*tmp != 0)
 	{
-		write(1, cmd, 1);
-		cmd++;
+		write(1, tmp, 1);
+		tmp++;
 	}
 	write(1, ": command not found\n", 20);
 }
@@ -32,7 +38,7 @@ void	child_one(t_pipex *pipex)
 			pipex->s_envp);
 	else
 	{
-		command_not_found(pipex->first_cmd->argv[0]);
+		pipex->err_num = 1;
 		exit(1);
 	}	
 }
@@ -47,7 +53,7 @@ void	child_two(t_pipex *pipex)
 			pipex->s_envp);
 	else
 	{
-		command_not_found(pipex->second_cmd->argv[0]);
+		pipex->err_num = 2;
 		exit(1);
 	}
 }	

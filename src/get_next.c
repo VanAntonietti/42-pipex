@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:22:22 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/19 21:15:14 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:48:28 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	init_struct(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->s_argc = argc;
 	pipex->s_argv = argv;
 	pipex->s_envp = envp;
+	pipex->err_num = 0;
 	pipex->file_in = open(argv[1], O_RDONLY);
 	pipex->file_out = open(argv[4], O_CREAT | O_TRUNC | O_WRONLY);
 	if (get_next_var(pipex) < 0)

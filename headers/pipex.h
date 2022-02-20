@@ -6,7 +6,7 @@
 /*   By: vantonie <vantonie@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 14:19:10 by vantonie          #+#    #+#             */
-/*   Updated: 2022/02/20 02:40:07 by vantonie         ###   ########.fr       */
+/*   Updated: 2022/02/19 23:50:29 by vantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_execv
 
 typedef struct s_pipex
 {
+	int		err_num;
 	int		file_in;
 	int		file_out;
 	int		s_argc;
@@ -76,5 +77,6 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *str);
 char	**ft_split_cmds(char const *s);
 void	free_ptr(void **fread);
+void	command_not_found(t_pipex *pipex);
 
 #endif
